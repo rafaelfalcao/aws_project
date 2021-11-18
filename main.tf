@@ -1,9 +1,9 @@
 resource "aws_ecr_repository" "my_ecr_repo" {
-    name  = "my_ecr_repo"
+    name  = "ecr-repo"
 }
 
-resource "aws_ecr_repository_policy" "demo-repo-policy" {
-  repository = aws_ecr_repository.demo-repository.name
+resource "aws_ecr_repository_policy" "repo-policy" {
+  repository = aws_ecr_repository.my_ecr_repo.name
   policy     = <<EOF
   {
     "Version": "2008-10-17",
