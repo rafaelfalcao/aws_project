@@ -9,37 +9,39 @@ resource "aws_vpc" "dev-vpc" {
         Name = "dev-vpc"
     }
 }
-# module "vpc" {
-#   source = "terraform-aws-modules/vpc/aws"
 
-#   name = "VirtualPrivateCloud"
-#   #Classless Inter-Domain Routing 
-#   #IPv4 addresses for the vpc
-#   cidr = "192.168.0.0/16"
+/*
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
 
-#   #availability zones
-#   azs = ["eu-west-2a", "eu-west-2b"] //, "eu-west-2c"]
+  name = "VirtualPrivateCloud"
+  #Classless Inter-Domain Routing 
+  #IPv4 addresses for the vpc
+  cidr = "192.168.0.0/16"
 
-#   #SUBNETS - range of ip addresses in the vpc - subset of CIDR
+  #availability zones
+  azs = ["eu-west-2a", "eu-west-2b"] //, "eu-west-2c"]
 
-#   private_subnets = ["192.168.1.0/24", "192.168.2.0/24"]
+  #SUBNETS - range of ip addresses in the vpc - subset of CIDR
 
-#   #to route to an internet gateway
-#   #needs public ipv4 or elastic ip 
-#   public_subnets = ["192.168.100.0/24"] //, "10.0.102.0/24", "10.0.103.0/24"]
+  private_subnets = ["192.168.1.0/24", "192.168.2.0/24"]
 
-#   #traffic routed to a vpn gateway for a site-to-site vpn connection
-#   #enables access to your remote network from your VPC by creating an AWS Site-to-Site VPN (Site-to-Site VPN) connection, 
-#   #and configuring routing to pass traffic through the connection. 
-#   enable_vpn_gateway = true
+  #to route to an internet gateway
+  #needs public ipv4 or elastic ip 
+  public_subnets = ["192.168.100.0/24"] //, "10.0.102.0/24", "10.0.103.0/24"]
+
+  #traffic routed to a vpn gateway for a site-to-site vpn connection
+  #enables access to your remote network from your VPC by creating an AWS Site-to-Site VPN (Site-to-Site VPN) connection, 
+  #and configuring routing to pass traffic through the connection. 
+  enable_vpn_gateway = true
   
-#   #enables internet access from the  inside 
-#   enable_nat_gateway = true
+  #enables internet access from the  inside 
+  enable_nat_gateway = true
 
-# }
+}
+/*
 
-
-resource "aws_subnet" "dev-subnet-public-1" {
+/* resource "aws_subnet" "dev-subnet-public-1" {
     vpc_id = "${aws_vpc.dev-vpc.id}"
     count = length(data.aws_availability_zones.available.names)
     cidr_block = "192.168.101.0/24"
@@ -90,3 +92,4 @@ resource "aws_subnet" "dev-subnet-private-2" {
 data "aws_availability_zones" "available" {
     state="available"
 }
+ */
