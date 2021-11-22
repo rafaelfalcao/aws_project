@@ -1,8 +1,8 @@
-/* #enables vpc connectivity to the internet
+ #enables vpc connectivity to the internet
 resource "aws_internet_gateway" "dev-igw" {
     vpc_id = "${aws_vpc.dev-vpc.id}"
 
-    tags {
+    tags= {
         Name = "dev-igw"
     }
 }
@@ -15,13 +15,13 @@ resource "aws_route_table" "dev-public-crt" {
         gateway_id = "${aws_internet_gateway.dev-igw.id}" 
     }
 
-    tags {
+    tags = {
         Name = "dev-public-crt"
     }
 }
 
 resource "aws_security_group" "ssh-allowed" {
-    vpc_id = "${aws_vpc.prod-vpc.id}"
+    vpc_id = "${aws_vpc.dev-vpc.id}"
     
     egress {
         from_port = 0
@@ -44,7 +44,7 @@ resource "aws_security_group" "ssh-allowed" {
         cidr_blocks = ["0.0.0.0/0"]
     }    
     
-    tags {
+    tags =  {
         Name = "ssh-allowed"
     }
-}  */
+} 
