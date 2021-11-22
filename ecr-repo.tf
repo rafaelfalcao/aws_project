@@ -1,5 +1,5 @@
-resource "aws_ecr_repository" "my_ecr_repo" {
-    name  = "ecr-repo"
+resource "aws_ecr_repository" "ecr_repo" {
+    name  = "frontend-image"
 }
 
 resource "aws_ecr_repository_policy" "repo-policy" {
@@ -27,3 +27,14 @@ resource "aws_ecr_repository_policy" "repo-policy" {
   }
   EOF
 }
+
+##  Build Docker image and push to ECR
+resource "docker_registry_image" "frontend" {
+  name = "${aws_ecr_repository.ecr-repo.repository_url}:latest"
+
+  build { 
+    context = "../weather-app-indicator"
+    dockerfile = "Dockerfile"
+  }  
+}
+
