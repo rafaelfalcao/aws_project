@@ -1,5 +1,5 @@
 provider "aws" {
-    region = "${var.AWS_REGION}"
+    region = "${var.aws-region}"
 }
 
 terraform {
@@ -10,6 +10,7 @@ terraform {
     }
   }
 }
+
 ## Setup Docker provider and proper credentials to push to ECR
 provider "docker" {
     registry_auth {

@@ -34,6 +34,10 @@ resource "aws_subnet" "dev-subnet-public-2" {
     }
 }*/
 
+data "aws_subnet_ids" "private_subnets_ids"{
+    vpc_id = "${aws_vpc.dev-vpc.id}"
+}
+
 resource "aws_subnet" "dev-subnet-private" {
     vpc_id = "${aws_vpc.dev-vpc.id}"
     count = length(data.aws_availability_zones.available.names)
