@@ -1,5 +1,5 @@
-resource "aws_iam_role" "stepfunction_ecs_task_execution_role" {
-  name = "${var.app-prefix}-ECS-TaskExecution-Role"
+resource "aws_iam_role" "ecs_task_execution_role" {
+  name = "${var.app-prefix}-ecsTaskExecutionRole"
  
   assume_role_policy = <<EOF
 {
@@ -19,6 +19,6 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "ecs-task-execution-role-policy-attachment" {
-  role       = "${aws_iam_role.stepfunction_ecs_task_execution_role.name}"
+  role       = "${aws_iam_role.ecs_task_execution_role.name}"
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }

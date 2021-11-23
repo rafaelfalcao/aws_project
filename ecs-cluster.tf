@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "my_task_definition" {
     requires_compatibilities = ["FARGATE"]
     memory = "1024"
     cpu = "512"
-    execution_role_arn = "${aws_iam_role.stepfunction_ecs_task_execution_role.arn}"
+    execution_role_arn = aws_iam_role.ecs_task_execution_role.arn
     container_definitions = <<EOF
 [
   {
@@ -36,6 +36,7 @@ EOF
 
 resource "aws_ecs_service" "my_ecs_service" {
     name = "ecs-frontend"
+    desired_count = 2
     cluster = aws_ecs_cluster.my_ecs_cluster.id
     task_definition = aws_ecs_task_definition.my_task_definition.arn
     network_configuration {
