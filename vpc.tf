@@ -4,7 +4,6 @@ resource "aws_vpc" "dev-vpc" {
     enable_dns_hostnames = "true"
     enable_classiclink = "false"
     instance_tenancy = "default" #if true, our ec2 instance will use all the hardware
-
     tags = {
         Name = "dev-vpc"
     }
@@ -21,22 +20,6 @@ resource "aws_vpc" "dev-vpc" {
         Name = "dev-subnet-public-${count.index}"
     }
 }
-/*
-resource "aws_subnet" "dev-subnet-public-2" {
-    vpc_id = "${aws_vpc.dev-vpc.id}"
-    //count = length(data.aws_availability_zones.available.names)
-    cidr_block = "192.168.102.0/24"
-    map_public_ip_on_launch = "true" #public subnet
-    availability_zone = data.aws_availability_zones.available.names[1]
-
-    tags = {
-        Name = "dev-subnet-public-2"
-    }
-}*/
-
-data "aws_subnet_ids" "private_subnets_ids"{
-    vpc_id = "${aws_vpc.dev-vpc.id}"
-}
 
 resource "aws_subnet" "dev-subnet-private" {
     vpc_id = "${aws_vpc.dev-vpc.id}"
@@ -50,21 +33,10 @@ resource "aws_subnet" "dev-subnet-private" {
     }
 }
 
-/*
-resource "aws_subnet" "dev-subnet-private-2" {
-    vpc_id = "${aws_vpc.dev-vpc.id}"
-    //count = length(data.aws_availability_zones.available.names)
-    cidr_block = "192.168.2.0/24"
-    map_public_ip_on_launch = "false" 
-    availability_zone = data.aws_availability_zones.available.names[1]
-
-    tags = {
-        Name = "dev-subnet-private-2"
-    }
-}
-*/
-
 data "aws_availability_zones" "available" {
     state="available"
 }
  
+data "aws_subnet_ids" "private_subnets_ids"{
+    vpc_id = "${aws_vpc.dev-vpc.id}"
+}
