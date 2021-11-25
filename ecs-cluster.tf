@@ -21,7 +21,7 @@ resource "aws_ecs_task_definition" "my_task_definition" {
     "memory": 1024,
     "cpu": 512,
     "essential": true,
-    "entryPoint": ["/"],
+    "entryPoint": ["npm","start"],
     "portMappings": [
       {
         "containerPort": 3000,
@@ -35,14 +35,18 @@ EOF
 }
 
 resource "aws_ecs_service" "my_ecs_service" {
-    name = "ecs-frontend"
-    desired_count = 2
-    cluster = aws_ecs_cluster.my_ecs_cluster.id
-    task_definition = aws_ecs_task_definition.my_task_definition.arn
-    network_configuration {
-        subnets          = ["${aws_subnet.dev-subnet-private[0].id}","${aws_subnet.dev-subnet-private[1].id}"]
-        assign_public_ip = true
-    }
-    launch_type = "FARGATE"
+  name            = "frontend-service"
+  cluster         = aws_ecs_cluster.my_ecs_cluster.id
+  task_definition = aws_ecs_task_definition.my_task_definition.arn
+  desired_count   = var.app_count
+  launch_type     = "FARGATE"
+
+  network_configuration {
+    security_groups  = [aws_security_group.ecs_sg.id]
+    subnets          = aws_subnet.private.*.id
+    assign_public_ip = true
+  }
+
+
 }
 
