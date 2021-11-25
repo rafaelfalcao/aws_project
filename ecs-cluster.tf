@@ -16,7 +16,7 @@ resource "aws_ecs_task_definition" "my_task_definition" {
     container_definitions = <<EOF
 [
   {
-    "name": "demo-container",
+    "name": "${var.container_name}",
     "image": "639110431478.dkr.ecr.eu-west-2.amazonaws.com/frontend-image:latest",
     "memory": 1024,
     "cpu": 512,
@@ -47,6 +47,12 @@ resource "aws_ecs_service" "my_ecs_service" {
     assign_public_ip = true
   }
 
+
+  load_balancer {
+    target_group_arn = aws_alb_target_group.myapp-tg.arn
+    container_name   = var.container_name 
+    container_port   = var.app_port
+  }
 
 }
 

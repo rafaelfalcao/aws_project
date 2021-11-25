@@ -46,3 +46,8 @@ variable "fargate_memory" {
   default     = "2048"
   description = "Fargate instance memory to provision (in MiB) not MB"
 }
+
+variable "container_name"{
+    default = "react-app-container"
+    description = "name of the container running the docker image from ecr"
+}
