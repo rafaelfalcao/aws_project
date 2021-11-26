@@ -1,4 +1,4 @@
-
+/*
 resource "aws_instance" "myEC2" {
   ami = "ami-0c0a1cc13a52a158f" # UBUNTU - ssh user is "ubuntu"
   #LINUX2 AMI's user is ec2-user
@@ -36,3 +36,4 @@ resource "aws_instance" "myEC2-1" {
     EOF
   #-y argument overrides the y/n question of apt-get
 }
+*/

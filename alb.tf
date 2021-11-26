@@ -4,8 +4,8 @@ resource "aws_alb" "alb" {
   security_groups = [aws_security_group.alb-sg.id]
 }
 
-resource "aws_alb_target_group" "myapp-tg" {
-  name        = "myapp-tg"
+resource "aws_alb_target_group" "frontend-ecs-tg" {
+  name        = "frontend-ecs-tg"
   port        = 80
   protocol    = "HTTP"
   target_type = "ip"
@@ -32,6 +32,6 @@ resource "aws_alb_listener" "testapp" {
   #enable above 2 if you are using HTTPS listner and change protocal from HTTPS to HTTPS
   default_action {
     type             = "forward"
-    target_group_arn = aws_alb_target_group.myapp-tg.arn
+    target_group_arn = aws_alb_target_group.frontend-ecs-tg.arn
   }
 }
