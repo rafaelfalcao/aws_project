@@ -30,7 +30,7 @@ variable "app_port" {
 
 variable "app_count" {
   default     = "2" #choose 2 bcz i have choosen 2 AZ
-  description = "numer of docker containers to run"
+  description = "number of docker containers to run"
 }
 
 variable "health_check_path" {

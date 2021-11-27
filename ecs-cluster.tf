@@ -55,7 +55,8 @@ resource "aws_ecs_service" "my_ecs_service" {
   }
 
   depends_on = [
-    aws_alb_listener.testapp,
+    aws_alb_listener.http-listener,
+//    aws_alb_listener.https-listener,
     aws_alb_target_group.frontend-ecs-tg
   ]
 }
