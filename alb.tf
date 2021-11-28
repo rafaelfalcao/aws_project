@@ -25,7 +25,7 @@ resource "aws_alb_target_group" "frontend-ecs-tg" {
 #redirecting all incomming traffic from ALB to the target group
 resource "aws_alb_listener" "http-listener" {
   load_balancer_arn = aws_alb.alb.id
-  port              = var.app_port
+  port              = 80
   protocol          = "HTTP"
 
   default_action {
