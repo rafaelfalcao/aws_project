@@ -24,8 +24,8 @@ resource "aws_ecs_task_definition" "my_task_definition" {
     "entryPoint": ["npm","start"],
     "portMappings": [
       {
-        "containerPort": 3000,
-        "hostPort": 3000
+        "containerPort": ${var.app_port},
+        "hostPort": ${var.app_port}
       }
     ]
   }
