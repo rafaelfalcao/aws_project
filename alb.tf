@@ -2,6 +2,7 @@ resource "aws_alb" "alb" {
   name           = "myapp-load-balancer"
   subnets        = aws_subnet.public.*.id
   security_groups = [aws_security_group.alb-sg.id]
+  enable_http2    = "true"
 }
 
 resource "aws_alb_target_group" "frontend-ecs-tg" {
