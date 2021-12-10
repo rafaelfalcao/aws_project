@@ -49,15 +49,15 @@ resource "aws_ecs_service" "my_ecs_service" {
 
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.frontend-ecs-tg.arn
+    target_group_arn = aws_alb_target_group.this.0.arn
     container_name   = var.container_name 
     container_port   = var.app_port
   }
 
   depends_on = [
-    aws_alb_listener.http-listener,
+    aws_alb_listener.this,
 //    aws_alb_listener.https-listener,
-    aws_alb_target_group.frontend-ecs-tg
+    aws_alb_target_group.this
   ]
 }
 

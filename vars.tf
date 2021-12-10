@@ -23,6 +23,11 @@ variable "app_image" {
   description = "docker image to run in this ECS cluster"
 }
 
+variable "github_token" {
+  description = "The GitHub Token to be used for the CodePipeline"
+  type        = string
+}
+
 variable "app_port" {
   default     = "3000"
   description = "portexposed on the docker image"

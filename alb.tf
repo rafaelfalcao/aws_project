@@ -5,6 +5,91 @@ resource "aws_alb" "alb" {
   enable_http2    = "true"
 }
 
+resource "aws_security_group" "this" {
+  name   = "allow-http"
+  vpc_id = "${aws_vpc.test-vpc.id}"
+
+  ingress {
+    from_port   = 80
+    protocol    = "tcp"
+    to_port     = 80
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    protocol    = "-1"
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags ={
+    Name = "allow-http-sg"
+  }
+}
+
+resource "aws_alb" "this" {
+  name               = "alb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    =  ["${aws_security_group.this.id}"]
+  subnets            =aws_subnet.public.*.id
+
+  tags ={
+    Name = "alb"
+  }
+}
+
+locals {
+  target_groups = [
+    "green",
+    "blue",
+  ]
+}
+
+resource "aws_alb_target_group" "this" {
+  count = "${length(local.target_groups)}"
+
+  name = "example-tg-${element(local.target_groups, count.index)}"
+
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = "${aws_vpc.test-vpc.id}"
+  target_type = "ip"
+
+  health_check {
+    path = "/"
+    port = 80
+  }
+}
+
+resource "aws_alb_listener" "this" {
+  load_balancer_arn = "${aws_alb.this.arn}"
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = "${aws_alb_target_group.this.*.arn[0]}"
+  }
+}
+
+resource "aws_alb_listener_rule" "this" {
+  listener_arn = "${aws_alb_listener.this.arn}"
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_alb_target_group.this.*.arn[0]}"
+  }
+  
+   condition {
+    host_header {
+      values = ["api.example.com"]
+    }
+  }
+}
+
+/*
 resource "aws_alb_target_group" "frontend-ecs-tg" {
   name        = "frontend-ecs-tg"
   port        = 80
@@ -23,6 +108,7 @@ resource "aws_alb_target_group" "frontend-ecs-tg" {
   }
 }
 
+
 #redirecting all incomming traffic from ALB to the target group
 resource "aws_alb_listener" "http-listener" {
   load_balancer_arn = aws_alb.alb.id
@@ -34,6 +120,7 @@ resource "aws_alb_listener" "http-listener" {
     target_group_arn = aws_alb_target_group.frontend-ecs-tg.arn
   }
 }
+/*
 
 /*
 

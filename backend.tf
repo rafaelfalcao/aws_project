@@ -1,12 +1,12 @@
-resource "aws_s3_bucket" "bucket" {
+/*resource "aws_s3_bucket" "bucket" {
   bucket = "terraform-state-file-repo-rf"
 }
 
 
 terraform {
   backend "s3" {
-    bucket = "terraformbackend"
-    key = "terraform"
+    bucket = "terraform-state-file-repo-rf"
+    key = "terraform.tfstate"
     region = "eu-west-2"
   }
 }
@@ -21,3 +21,4 @@ resource "aws_dynamodb_table" "terraform_state_lock" {
     type = "S"
   }
 }
+*/
