@@ -1,7 +1,26 @@
+resource "aws_iam_role_policy" "codedeploy" {
+  role   = "${aws_iam_role.codedeploy.name}"
+  policy = "${data.aws_iam_policy_document.codedeploy.json}"
+}
+
 resource "aws_iam_role" "codedeploy" {
   name               = "codedeploy"
-  assume_role_policy = "${data.aws_iam_policy_document.codedeploy.json}"
+  assume_role_policy = "${data.aws_iam_policy_document.assume_by_codedeploy.json}"
 }
+
+data "aws_iam_policy_document" "assume_by_codedeploy" {
+  statement {
+    sid     = ""
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["codedeploy.amazonaws.com"]
+    }
+  }
+}
+
 
 data "aws_iam_policy_document" "codedeploy" {
   statement {
@@ -42,9 +61,4 @@ data "aws_iam_policy_document" "codedeploy" {
       "${aws_iam_role.ecs_task_execution_role.arn}"
     ]
   }
-}
-
-resource "aws_iam_role_policy" "codedeploy" {
-  role   = "${aws_iam_role.codedeploy.name}"
-  policy = "${data.aws_iam_policy_document.codedeploy.json}"
 }

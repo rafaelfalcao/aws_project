@@ -54,6 +54,10 @@ resource "aws_ecs_service" "my_ecs_service" {
     container_port   = var.app_port
   }
 
+  deployment_controller {
+    type = "CODE_DEPLOY"
+  }
+
   depends_on = [
     aws_alb_listener.this,
 //    aws_alb_listener.https-listener,

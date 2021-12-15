@@ -1,10 +1,3 @@
-resource "aws_alb" "alb" {
-  name           = "myapp-load-balancer"
-  subnets        = aws_subnet.public.*.id
-  security_groups = [aws_security_group.alb-sg.id]
-  enable_http2    = "true"
-}
-
 resource "aws_security_group" "this" {
   name   = "allow-http"
   vpc_id = "${aws_vpc.test-vpc.id}"
@@ -65,7 +58,7 @@ resource "aws_alb_target_group" "this" {
 
 resource "aws_alb_listener" "this" {
   load_balancer_arn = "${aws_alb.this.arn}"
-  port              = "80"
+  port              = 80
   protocol          = "HTTP"
 
   default_action {
