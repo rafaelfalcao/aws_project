@@ -50,7 +50,6 @@ resource "aws_iam_role_policy_attachment" "ecs-task-execution-default-policy-att
     policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
-######## Codepipeline ########
 
 
 

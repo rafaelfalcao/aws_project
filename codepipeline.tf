@@ -1,6 +1,6 @@
 
 resource "aws_codepipeline" "this" {
-  name     = "example-pipeline"
+  name     = "blue-green-pipeline"
   role_arn = "${aws_iam_role.pipeline.arn}"
 
   artifact_store {
