@@ -28,7 +28,8 @@ data "aws_iam_policy_document" "codebuild-ecr-policy" {
     ]
 
     resources = [
-      "${aws_s3_bucket.codepipeline-artifacts.arn}"
+      "${aws_s3_bucket.codepipeline-artifacts.arn}",
+      "${aws_s3_bucket.codepipeline-artifacts.arn}/*"
     ]
   }
 

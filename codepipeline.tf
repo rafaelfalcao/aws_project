@@ -21,9 +21,9 @@ resource "aws_codepipeline" "this" {
 
       configuration = {
         OAuthToken = "${var.github_token}"
-        Owner      = "snowiow"
-        Repo       = "green-blue-ecs-example"
-        Branch     = "master"
+        Owner      = "rafaelfalcao"
+        Repo       = "aws_project"
+        Branch     = "main"
       }
     }
   }

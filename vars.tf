@@ -6,8 +6,6 @@ variable "app-prefix" {
     default = "frontend-docker"
 }
 
-
-
 variable "az_count" {
   default     = "2"
   description = "number of availability zones in above region"
@@ -55,4 +53,9 @@ variable "fargate_memory" {
 variable "container_name"{
     default = "react-app-container"
     description = "name of the container running the docker image from ecr"
+}
+
+variable "account_id" {
+  description = "id of the active account"
+
 }
