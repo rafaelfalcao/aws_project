@@ -1,20 +1,2 @@
-#base image
-FROM node:13.12.0-alpine
-
-#set working dir
-WORKDIR /app
-
-#add node modules/.bin to PATH
-ENV PATH  /app/node_modules/.bin:$PATH
-
-#install dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
-COPY . ./
-
-EXPOSE 3000
-EXPOSE 80
-
-CMD ["npm", "start"]
+FROM nginx
+ADD public /usr/share/nginx/html
