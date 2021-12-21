@@ -1,6 +1,6 @@
 resource "aws_codedeploy_deployment_group" "this" {
   app_name               = "${aws_codedeploy_app.this.name}"
-  deployment_group_name  = "example-deploy-group"
+  deployment_group_name  = "codedeploy-group"
   deployment_config_name = "CodeDeployDefault.ECSAllAtOnce"
   service_role_arn       = "${aws_iam_role.codedeploy.arn}"
 
