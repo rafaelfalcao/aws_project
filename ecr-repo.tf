@@ -9,9 +9,8 @@ resource "docker_registry_image" "frontend" {
   name = "${aws_ecr_repository.ecr_repo.repository_url}:latest"
 
   build { 
-    context = "weather-app-indicator"
+    context = "."
     dockerfile = "Dockerfile"
   }  
 }
 
- 

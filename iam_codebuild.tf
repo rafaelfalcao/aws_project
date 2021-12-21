@@ -43,18 +43,14 @@ data "aws_iam_policy_document" "codebuild-ecr-policy" {
   }
 
   statement {
-    sid    = "AllowECRUpload"
+    sid    = "AllowECR"
     effect = "Allow"
 
     actions = [
-      "ecr:InitiateLayerUpload",
-      "ecr:UploadLayerPart",
-      "ecr:CompleteLayerUpload",
-      "ecr:BatchCheckLayerAvailability",
-      "ecr:PutImage",
+      "ecr:*"
     ]
-
-    resources = ["${aws_ecr_repository.ecr_repo.arn}"]
+    resources = ["*"]
+    //resources = ["${aws_ecr_repository.ecr_repo.arn}"]
   }
 
   statement {
