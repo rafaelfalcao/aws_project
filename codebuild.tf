@@ -25,7 +25,7 @@ resource "aws_codebuild_project" "this" {
 
     environment_variable {
       name  = "CONTAINER_NAME"
-      value = "${aws_s3_bucket.codepipeline-artifacts.id}"
+      value = var.container_name 
     }
 
     environment_variable {
