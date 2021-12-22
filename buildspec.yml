@@ -15,12 +15,11 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t latest .
-      - docker tag latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI:latest
       - aws ecs describe-task-definition --task-definition frontend-task-definition | jq -r '.taskDefinition' > taskdef.json
       - ls -la
       - cat taskdef.json
