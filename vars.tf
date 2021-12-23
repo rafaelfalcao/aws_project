@@ -27,7 +27,7 @@ variable "github_token" {
 }
 
 variable "app_port" {
-  default     = "3000"
+  default     = "8080"
   description = "portexposed on the docker image"
 }
 

@@ -1,0 +1,1304 @@
+
+
+       _               _              
+   ___| |__   ___  ___| | _______   __
+  / __| '_ \ / _ \/ __| |/ / _ \ \ / /
+ | (__| | | |  __/ (__|   < (_) \ V / 
+  \___|_| |_|\___|\___|_|\_\___/ \_/  
+                                      
+By bridgecrew.io | version: 2.0.689 
+Update available 2.0.689 -> 2.0.690
+Run pip3 install -U checkov to update 
+
+
+terraform scan results:
+
+Passed checks: 75, Failed checks: 28, Skipped checks: 0
+
+Check: CKV_AWS_78: "Ensure that CodeBuild Project encryption is not disabled"
+	PASSED for resource: aws_codebuild_project.codebuild-project
+	File: /codebuild.tf:1-50
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_general_30
+
+Check: CKV_AWS_97: "Ensure Encryption in transit is enabled for EFS volumes in ECS Task definitions"
+	PASSED for resource: aws_ecs_task_definition.my_task_definition
+	File: /ecs-cluster.tf:9-41
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_general_39
+
+Check: CKV_AWS_1: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+	PASSED for resource: aws_iam_policy_document.ecs_task_execution_role_policy
+	File: /iam.tf:2-14
+	Guide: https://docs.bridgecrew.io/docs/iam_23
+
+Check: CKV_AWS_49: "Ensure no IAM policies documents allow "*" as a statement's actions"
+	PASSED for resource: aws_iam_policy_document.ecs_task_execution_role_policy
+	File: /iam.tf:2-14
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_43
+
+Check: CKV_AWS_108: "Ensure IAM policies does not allow data exfiltration"
+	PASSED for resource: aws_iam_policy_document.ecs_task_execution_role_policy
+	File: /iam.tf:2-14
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-data-exfiltration
+
+Check: CKV_AWS_111: "Ensure IAM policies does not allow write access without constraints"
+	PASSED for resource: aws_iam_policy_document.ecs_task_execution_role_policy
+	File: /iam.tf:2-14
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-write-access-without-constraint
+
+Check: CKV_AWS_107: "Ensure IAM policies does not allow credentials exposure"
+	PASSED for resource: aws_iam_policy_document.ecs_task_execution_role_policy
+	File: /iam.tf:2-14
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-credentials-exposure
+
+Check: CKV_AWS_109: "Ensure IAM policies does not allow permissions management / resource exposure without constraints"
+	PASSED for resource: aws_iam_policy_document.ecs_task_execution_role_policy
+	File: /iam.tf:2-14
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-permissions-management-resource-exposure-without-constraint
+
+Check: CKV_AWS_110: "Ensure IAM policies does not allow privilege escalation"
+	PASSED for resource: aws_iam_policy_document.ecs_task_execution_role_policy
+	File: /iam.tf:2-14
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-does-not-allow-privilege-escalation
+
+Check: CKV_AWS_60: "Ensure IAM role allows only specific services or principals to assume it"
+	PASSED for resource: aws_iam_role.ecs_task_execution_role
+	File: /iam.tf:16-19
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_44
+
+Check: CKV_AWS_61: "Ensure IAM role allows only specific principals in account to assume it"
+	PASSED for resource: aws_iam_role.ecs_task_execution_role
+	File: /iam.tf:16-19
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_45
+
+Check: CKV_AWS_62: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+	PASSED for resource: aws_iam_policy.ecs-to-ecr-policy
+	File: /iam.tf:21-41
+	Guide: https://docs.bridgecrew.io/docs/iam_47
+
+Check: CKV_AWS_63: "Ensure no IAM policies documents allow "*" as a statement's actions"
+	PASSED for resource: aws_iam_policy.ecs-to-ecr-policy
+	File: /iam.tf:21-41
+	Guide: https://docs.bridgecrew.io/docs/iam_48
+
+Check: CKV_AWS_1: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+	PASSED for resource: aws_iam_policy_document.codebuild-policy-assume
+	File: /iam_codebuild.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/iam_23
+
+Check: CKV_AWS_49: "Ensure no IAM policies documents allow "*" as a statement's actions"
+	PASSED for resource: aws_iam_policy_document.codebuild-policy-assume
+	File: /iam_codebuild.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_43
+
+Check: CKV_AWS_108: "Ensure IAM policies does not allow data exfiltration"
+	PASSED for resource: aws_iam_policy_document.codebuild-policy-assume
+	File: /iam_codebuild.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-data-exfiltration
+
+Check: CKV_AWS_111: "Ensure IAM policies does not allow write access without constraints"
+	PASSED for resource: aws_iam_policy_document.codebuild-policy-assume
+	File: /iam_codebuild.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-write-access-without-constraint
+
+Check: CKV_AWS_107: "Ensure IAM policies does not allow credentials exposure"
+	PASSED for resource: aws_iam_policy_document.codebuild-policy-assume
+	File: /iam_codebuild.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-credentials-exposure
+
+Check: CKV_AWS_109: "Ensure IAM policies does not allow permissions management / resource exposure without constraints"
+	PASSED for resource: aws_iam_policy_document.codebuild-policy-assume
+	File: /iam_codebuild.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-permissions-management-resource-exposure-without-constraint
+
+Check: CKV_AWS_110: "Ensure IAM policies does not allow privilege escalation"
+	PASSED for resource: aws_iam_policy_document.codebuild-policy-assume
+	File: /iam_codebuild.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-does-not-allow-privilege-escalation
+
+Check: CKV_AWS_1: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+	PASSED for resource: aws_iam_policy_document.codebuild-ecr-policy
+	File: /iam_codebuild.tf:19-75
+	Guide: https://docs.bridgecrew.io/docs/iam_23
+
+Check: CKV_AWS_49: "Ensure no IAM policies documents allow "*" as a statement's actions"
+	PASSED for resource: aws_iam_policy_document.codebuild-ecr-policy
+	File: /iam_codebuild.tf:19-75
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_43
+
+Check: CKV_AWS_108: "Ensure IAM policies does not allow data exfiltration"
+	PASSED for resource: aws_iam_policy_document.codebuild-ecr-policy
+	File: /iam_codebuild.tf:19-75
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-data-exfiltration
+
+Check: CKV_AWS_107: "Ensure IAM policies does not allow credentials exposure"
+	PASSED for resource: aws_iam_policy_document.codebuild-ecr-policy
+	File: /iam_codebuild.tf:19-75
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-credentials-exposure
+
+Check: CKV_AWS_110: "Ensure IAM policies does not allow privilege escalation"
+	PASSED for resource: aws_iam_policy_document.codebuild-ecr-policy
+	File: /iam_codebuild.tf:19-75
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-does-not-allow-privilege-escalation
+
+Check: CKV_AWS_60: "Ensure IAM role allows only specific services or principals to assume it"
+	PASSED for resource: aws_iam_role.codebuild
+	File: /iam_codebuild.tf:14-17
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_44
+
+Check: CKV_AWS_61: "Ensure IAM role allows only specific principals in account to assume it"
+	PASSED for resource: aws_iam_role.codebuild
+	File: /iam_codebuild.tf:14-17
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_45
+
+Check: CKV_AWS_62: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+	PASSED for resource: aws_iam_role_policy.codebuild
+	File: /iam_codebuild.tf:77-80
+	Guide: https://docs.bridgecrew.io/docs/iam_47
+
+Check: CKV_AWS_63: "Ensure no IAM policies documents allow "*" as a statement's actions"
+	PASSED for resource: aws_iam_role_policy.codebuild
+	File: /iam_codebuild.tf:77-80
+	Guide: https://docs.bridgecrew.io/docs/iam_48
+
+Check: CKV_AWS_1: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+	PASSED for resource: aws_iam_policy_document.assume_by_codedeploy
+	File: /iam_codedeploy.tf:11-22
+	Guide: https://docs.bridgecrew.io/docs/iam_23
+
+Check: CKV_AWS_49: "Ensure no IAM policies documents allow "*" as a statement's actions"
+	PASSED for resource: aws_iam_policy_document.assume_by_codedeploy
+	File: /iam_codedeploy.tf:11-22
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_43
+
+Check: CKV_AWS_108: "Ensure IAM policies does not allow data exfiltration"
+	PASSED for resource: aws_iam_policy_document.assume_by_codedeploy
+	File: /iam_codedeploy.tf:11-22
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-data-exfiltration
+
+Check: CKV_AWS_111: "Ensure IAM policies does not allow write access without constraints"
+	PASSED for resource: aws_iam_policy_document.assume_by_codedeploy
+	File: /iam_codedeploy.tf:11-22
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-write-access-without-constraint
+
+Check: CKV_AWS_107: "Ensure IAM policies does not allow credentials exposure"
+	PASSED for resource: aws_iam_policy_document.assume_by_codedeploy
+	File: /iam_codedeploy.tf:11-22
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-credentials-exposure
+
+Check: CKV_AWS_109: "Ensure IAM policies does not allow permissions management / resource exposure without constraints"
+	PASSED for resource: aws_iam_policy_document.assume_by_codedeploy
+	File: /iam_codedeploy.tf:11-22
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-permissions-management-resource-exposure-without-constraint
+
+Check: CKV_AWS_110: "Ensure IAM policies does not allow privilege escalation"
+	PASSED for resource: aws_iam_policy_document.assume_by_codedeploy
+	File: /iam_codedeploy.tf:11-22
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-does-not-allow-privilege-escalation
+
+Check: CKV_AWS_1: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+	PASSED for resource: aws_iam_policy_document.codedeploy
+	File: /iam_codedeploy.tf:25-64
+	Guide: https://docs.bridgecrew.io/docs/iam_23
+
+Check: CKV_AWS_49: "Ensure no IAM policies documents allow "*" as a statement's actions"
+	PASSED for resource: aws_iam_policy_document.codedeploy
+	File: /iam_codedeploy.tf:25-64
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_43
+
+Check: CKV_AWS_108: "Ensure IAM policies does not allow data exfiltration"
+	PASSED for resource: aws_iam_policy_document.codedeploy
+	File: /iam_codedeploy.tf:25-64
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-data-exfiltration
+
+Check: CKV_AWS_107: "Ensure IAM policies does not allow credentials exposure"
+	PASSED for resource: aws_iam_policy_document.codedeploy
+	File: /iam_codedeploy.tf:25-64
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-credentials-exposure
+
+Check: CKV_AWS_109: "Ensure IAM policies does not allow permissions management / resource exposure without constraints"
+	PASSED for resource: aws_iam_policy_document.codedeploy
+	File: /iam_codedeploy.tf:25-64
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-permissions-management-resource-exposure-without-constraint
+
+Check: CKV_AWS_110: "Ensure IAM policies does not allow privilege escalation"
+	PASSED for resource: aws_iam_policy_document.codedeploy
+	File: /iam_codedeploy.tf:25-64
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-does-not-allow-privilege-escalation
+
+Check: CKV_AWS_62: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+	PASSED for resource: aws_iam_role_policy.codedeploy
+	File: /iam_codedeploy.tf:1-4
+	Guide: https://docs.bridgecrew.io/docs/iam_47
+
+Check: CKV_AWS_63: "Ensure no IAM policies documents allow "*" as a statement's actions"
+	PASSED for resource: aws_iam_role_policy.codedeploy
+	File: /iam_codedeploy.tf:1-4
+	Guide: https://docs.bridgecrew.io/docs/iam_48
+
+Check: CKV_AWS_60: "Ensure IAM role allows only specific services or principals to assume it"
+	PASSED for resource: aws_iam_role.codedeploy
+	File: /iam_codedeploy.tf:6-9
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_44
+
+Check: CKV_AWS_61: "Ensure IAM role allows only specific principals in account to assume it"
+	PASSED for resource: aws_iam_role.codedeploy
+	File: /iam_codedeploy.tf:6-9
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_45
+
+Check: CKV_AWS_1: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+	PASSED for resource: aws_iam_policy_document.assume_by_pipeline
+	File: /iam_codepipeline.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/iam_23
+
+Check: CKV_AWS_49: "Ensure no IAM policies documents allow "*" as a statement's actions"
+	PASSED for resource: aws_iam_policy_document.assume_by_pipeline
+	File: /iam_codepipeline.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_43
+
+Check: CKV_AWS_108: "Ensure IAM policies does not allow data exfiltration"
+	PASSED for resource: aws_iam_policy_document.assume_by_pipeline
+	File: /iam_codepipeline.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-data-exfiltration
+
+Check: CKV_AWS_111: "Ensure IAM policies does not allow write access without constraints"
+	PASSED for resource: aws_iam_policy_document.assume_by_pipeline
+	File: /iam_codepipeline.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-write-access-without-constraint
+
+Check: CKV_AWS_107: "Ensure IAM policies does not allow credentials exposure"
+	PASSED for resource: aws_iam_policy_document.assume_by_pipeline
+	File: /iam_codepipeline.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-credentials-exposure
+
+Check: CKV_AWS_109: "Ensure IAM policies does not allow permissions management / resource exposure without constraints"
+	PASSED for resource: aws_iam_policy_document.assume_by_pipeline
+	File: /iam_codepipeline.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-permissions-management-resource-exposure-without-constraint
+
+Check: CKV_AWS_110: "Ensure IAM policies does not allow privilege escalation"
+	PASSED for resource: aws_iam_policy_document.assume_by_pipeline
+	File: /iam_codepipeline.tf:1-12
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-does-not-allow-privilege-escalation
+
+Check: CKV_AWS_1: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+	PASSED for resource: aws_iam_policy_document.pipeline
+	File: /iam_codepipeline.tf:19-87
+	Guide: https://docs.bridgecrew.io/docs/iam_23
+
+Check: CKV_AWS_49: "Ensure no IAM policies documents allow "*" as a statement's actions"
+	PASSED for resource: aws_iam_policy_document.pipeline
+	File: /iam_codepipeline.tf:19-87
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_43
+
+Check: CKV_AWS_108: "Ensure IAM policies does not allow data exfiltration"
+	PASSED for resource: aws_iam_policy_document.pipeline
+	File: /iam_codepipeline.tf:19-87
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-data-exfiltration
+
+Check: CKV_AWS_107: "Ensure IAM policies does not allow credentials exposure"
+	PASSED for resource: aws_iam_policy_document.pipeline
+	File: /iam_codepipeline.tf:19-87
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-credentials-exposure
+
+Check: CKV_AWS_110: "Ensure IAM policies does not allow privilege escalation"
+	PASSED for resource: aws_iam_policy_document.pipeline
+	File: /iam_codepipeline.tf:19-87
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-does-not-allow-privilege-escalation
+
+Check: CKV_AWS_60: "Ensure IAM role allows only specific services or principals to assume it"
+	PASSED for resource: aws_iam_role.pipeline
+	File: /iam_codepipeline.tf:14-17
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_44
+
+Check: CKV_AWS_61: "Ensure IAM role allows only specific principals in account to assume it"
+	PASSED for resource: aws_iam_role.pipeline
+	File: /iam_codepipeline.tf:14-17
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_45
+
+Check: CKV_AWS_62: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+	PASSED for resource: aws_iam_role_policy.pipeline
+	File: /iam_codepipeline.tf:89-92
+	Guide: https://docs.bridgecrew.io/docs/iam_47
+
+Check: CKV_AWS_63: "Ensure no IAM policies documents allow "*" as a statement's actions"
+	PASSED for resource: aws_iam_role_policy.pipeline
+	File: /iam_codepipeline.tf:89-92
+	Guide: https://docs.bridgecrew.io/docs/iam_48
+
+Check: CKV_AWS_41: "Ensure no hard coded AWS access key and secret key exists in provider"
+	PASSED for resource: aws.default
+	File: /provider.tf:1-3
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_secrets_5
+
+Check: CKV_AWS_70: "Ensure S3 bucket does not allow an action with any Principal"
+	PASSED for resource: aws_s3_bucket.codepipeline-artifacts
+	File: /s3.tf:1-8
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_s3_23
+
+Check: CKV_AWS_57: "S3 Bucket has an ACL defined which allows public WRITE access."
+	PASSED for resource: aws_s3_bucket.codepipeline-artifacts
+	File: /s3.tf:1-8
+	Guide: https://docs.bridgecrew.io/docs/s3_2-acl-write-permissions-everyone
+
+Check: CKV_AWS_93: "Ensure S3 bucket policy does not lockout all but root user. (Prevent lockouts needing root account fixes)"
+	PASSED for resource: aws_s3_bucket.codepipeline-artifacts
+	File: /s3.tf:1-8
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_53
+
+Check: CKV_AWS_20: "S3 Bucket has an ACL defined which allows public READ access."
+	PASSED for resource: aws_s3_bucket.codepipeline-artifacts
+	File: /s3.tf:1-8
+	Guide: https://docs.bridgecrew.io/docs/s3_1-acl-read-permissions-everyone
+
+Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+	PASSED for resource: aws_security_group.alb-sg
+	File: /security-groups.tf:1-22
+	Guide: https://docs.bridgecrew.io/docs/networking_2
+
+Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+	PASSED for resource: aws_security_group.alb-sg
+	File: /security-groups.tf:1-22
+	Guide: https://docs.bridgecrew.io/docs/networking_1-port-security
+
+Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+	PASSED for resource: aws_security_group.ecs_sg
+	File: /security-groups.tf:24-42
+	Guide: https://docs.bridgecrew.io/docs/networking_2
+
+Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+	PASSED for resource: aws_security_group.ecs_sg
+	File: /security-groups.tf:24-42
+	Guide: https://docs.bridgecrew.io/docs/networking_1-port-security
+
+Check: CKV_AWS_130: "Ensure VPC subnets do not assign public IP by default"
+	PASSED for resource: aws_subnet.private
+	File: /vpc.tf:55-64
+	Guide: https://docs.bridgecrew.io/docs/ensure-vpc-subnets-do-not-assign-public-ip-by-default
+
+Check: CKV2_AWS_5: "Ensure that Security Groups are attached to another resource"
+	PASSED for resource: aws_security_group.alb-sg
+	File: /security-groups.tf:1-22
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis
+
+Check: CKV2_AWS_5: "Ensure that Security Groups are attached to another resource"
+	PASSED for resource: aws_security_group.ecs_sg
+	File: /security-groups.tf:24-42
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis
+
+Check: CKV2_AWS_19: "Ensure that all EIP addresses allocated to a VPC are attached to EC2 instances"
+	PASSED for resource: aws_eip.test-eip
+	File: /vpc.tf:92-96
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-all-eip-addresses-allocated-to-a-vpc-are-attached-to-ec2-instances
+
+Check: CKV_AWS_131: "Ensure that ALB drops HTTP headers"
+	FAILED for resource: aws_alb.app-load-balancer
+	File: /alb.tf:1-11
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-alb-drops-http-headers
+
+		1  | resource "aws_alb" "app-load-balancer" {
+		2  |   name               = "alb"
+		3  |   internal           = false
+		4  |   load_balancer_type = "application"
+		5  |   security_groups    = ["${aws_security_group.alb-sg.id}"]
+		6  |   subnets            = aws_subnet.public.*.id
+		7  | 
+		8  |   tags ={
+		9  |     Name = "alb"
+		10 |   }
+		11 | }
+
+
+Check: CKV_AWS_91: "Ensure the ELBv2 (Application/Network) has access logging enabled"
+	FAILED for resource: aws_alb.app-load-balancer
+	File: /alb.tf:1-11
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_logging_22
+
+		1  | resource "aws_alb" "app-load-balancer" {
+		2  |   name               = "alb"
+		3  |   internal           = false
+		4  |   load_balancer_type = "application"
+		5  |   security_groups    = ["${aws_security_group.alb-sg.id}"]
+		6  |   subnets            = aws_subnet.public.*.id
+		7  | 
+		8  |   tags ={
+		9  |     Name = "alb"
+		10 |   }
+		11 | }
+
+
+Check: CKV_AWS_150: "Ensure that Load Balancer has deletion protection enabled"
+	FAILED for resource: aws_alb.app-load-balancer
+	File: /alb.tf:1-11
+
+		1  | resource "aws_alb" "app-load-balancer" {
+		2  |   name               = "alb"
+		3  |   internal           = false
+		4  |   load_balancer_type = "application"
+		5  |   security_groups    = ["${aws_security_group.alb-sg.id}"]
+		6  |   subnets            = aws_subnet.public.*.id
+		7  | 
+		8  |   tags ={
+		9  |     Name = "alb"
+		10 |   }
+		11 | }
+
+
+Check: CKV_AWS_2: "Ensure ALB protocol is HTTPS"
+	FAILED for resource: aws_alb_listener.alb-http-listener
+	File: /alb.tf:36-45
+	Guide: https://docs.bridgecrew.io/docs/networking_29
+
+		36 | resource "aws_alb_listener" "alb-http-listener" {
+		37 |   load_balancer_arn = "${aws_alb.app-load-balancer.arn}"
+		38 |   port              = 80
+		39 |   protocol          = "HTTP"
+		40 | 
+		41 |   default_action {
+		42 |     type             = "forward"
+		43 |     target_group_arn = "${aws_alb_target_group.alb-tg.*.arn[0]}"
+		44 |   }
+		45 | }
+
+
+Check: CKV_AWS_103: "Ensure that load balancer is using TLS 1.2"
+	FAILED for resource: aws_alb_listener.alb-http-listener
+	File: /alb.tf:36-45
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_general_43
+
+		36 | resource "aws_alb_listener" "alb-http-listener" {
+		37 |   load_balancer_arn = "${aws_alb.app-load-balancer.arn}"
+		38 |   port              = 80
+		39 |   protocol          = "HTTP"
+		40 | 
+		41 |   default_action {
+		42 |     type             = "forward"
+		43 |     target_group_arn = "${aws_alb_target_group.alb-tg.*.arn[0]}"
+		44 |   }
+		45 | }
+
+
+Check: CKV_AWS_147: "Ensure that CodeBuild projects are encrypted"
+	FAILED for resource: aws_codebuild_project.codebuild-project
+	File: /codebuild.tf:1-50
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-codebuild-projects-are-encrypted-1
+
+		1  | resource "aws_codebuild_project" "codebuild-project" {
+		2  |   name         = "codebuild"
+		3  |   description  = "Codebuild for the ECS Green/Blue"
+		4  |   service_role = "${aws_iam_role.codebuild.arn}"
+		5  | 
+		6  |   artifacts {
+		7  |     type = "CODEPIPELINE"
+		8  |   }
+		9  | 
+		10 |   environment {
+		11 |     compute_type    = "BUILD_GENERAL1_SMALL"
+		12 |     image           = "aws/codebuild/docker:18.09.0"
+		13 |     type            = "LINUX_CONTAINER"
+		14 |     privileged_mode = true
+		15 | 
+		16 |     environment_variable {
+		17 |       name = "REPOSITORY_URI"
+		18 |       value = "${aws_ecr_repository.ecr_repo.repository_url}"
+		19 |     }
+		20 | 
+		21 |     environment_variable {
+		22 |       name  = "TASK_DEFINITION"
+		23 |       value = "arn:aws:ecs:${var.aws-region}:${var.account_id}:task-definition/${aws_ecs_task_definition.my_task_definition.family}"
+		24 |     }
+		25 | 
+		26 |     environment_variable {
+		27 |       name  = "CONTAINER_NAME"
+		28 |       value = var.container_name 
+		29 |     }
+		30 | 
+		31 |     environment_variable {
+		32 |       name  = "SUBNET_1"
+		33 |       value = "${aws_subnet.public.*.id[0]}"
+		34 |     }
+		35 | 
+		36 |     environment_variable {
+		37 |       name  = "SUBNET_2"
+		38 |       value = "${aws_subnet.public.*.id[1]}"
+		39 |     }
+		40 | 
+		41 |     environment_variable {
+		42 |       name  = "SECURITY_GROUP"
+		43 |       value = "${aws_security_group.ecs_sg.id}"
+		44 |     }
+		45 |   }
+		46 | 
+		47 |   source {
+		48 |     type = "CODEPIPELINE"
+		49 |   }
+		50 | }
+
+Check: CKV_AWS_136: "Ensure that ECR repositories are encrypted using KMS"
+	FAILED for resource: aws_ecr_repository.ecr_repo
+	File: /ecr-repo.tf:1-3
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-ecr-repositories-are-encrypted
+
+		1 | resource "aws_ecr_repository" "ecr_repo" {
+		2 |     name  = "frontend-image"
+		3 | }
+
+
+Check: CKV_AWS_163: "Ensure ECR image scanning on push is enabled"
+	FAILED for resource: aws_ecr_repository.ecr_repo
+	File: /ecr-repo.tf:1-3
+	Guide: https://docs.bridgecrew.io/docs/general_8
+
+		1 | resource "aws_ecr_repository" "ecr_repo" {
+		2 |     name  = "frontend-image"
+		3 | }
+
+
+Check: CKV_AWS_51: "Ensure ECR Image Tags are immutable"
+	FAILED for resource: aws_ecr_repository.ecr_repo
+	File: /ecr-repo.tf:1-3
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_general_24
+
+		1 | resource "aws_ecr_repository" "ecr_repo" {
+		2 |     name  = "frontend-image"
+		3 | }
+
+
+Check: CKV_AWS_65: "Ensure container insights are enabled on ECS cluster"
+	FAILED for resource: aws_ecs_cluster.my_ecs_cluster
+	File: /ecs-cluster.tf:1-7
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_logging_11
+
+		1 | resource "aws_ecs_cluster" "my_ecs_cluster" {
+		2 |     name = "ecs_cluster"
+		3 | 
+		4 |     tags = {
+		5 |         Name = "ecs-cluster"
+		6 |     }
+		7 | }
+
+
+Check: CKV_AWS_111: "Ensure IAM policies does not allow write access without constraints"
+	FAILED for resource: aws_iam_policy_document.codebuild-ecr-policy
+	File: /iam_codebuild.tf:19-75
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-write-access-without-constraint
+
+		19 | data "aws_iam_policy_document" "codebuild-ecr-policy" {
+		20 |   statement {
+		21 |     sid    = "AllowS3"
+		22 |     effect = "Allow"
+		23 | 
+		24 |     actions = [
+		25 |       "s3:GetObject",
+		26 |       "s3:ListBucket",
+		27 |       "s3:PutObject",
+		28 |     ]
+		29 | 
+		30 |     resources = [
+		31 |       "${aws_s3_bucket.codepipeline-artifacts.arn}",
+		32 |       "${aws_s3_bucket.codepipeline-artifacts.arn}/*"
+		33 |     ]
+		34 |   }
+		35 | 
+		36 |   statement {
+		37 |     sid    = "AllowECRAuth"
+		38 |     effect = "Allow"
+		39 | 
+		40 |     actions = ["ecr:GetAuthorizationToken"]
+		41 | 
+		42 |     resources = ["*"]
+		43 |   }
+		44 | 
+		45 |   statement {
+		46 |     sid    = "AllowECR"
+		47 |     effect = "Allow"
+		48 | 
+		49 |     actions = [
+		50 |       "ecr:*"
+		51 |     ]
+		52 |     resources = ["*"]
+		53 |     //resources = ["${aws_ecr_repository.ecr_repo.arn}"]
+		54 |   }
+		55 | 
+		56 |   statement {
+		57 |     sid       = "AllowECSDescribeTaskDefinition"
+		58 |     effect    = "Allow"
+		59 |     actions   = ["ecs:DescribeTaskDefinition"]
+		60 |     resources = ["*"]
+		61 |   }
+		62 | 
+		63 |   statement {
+		64 |     sid    = "AllowLogging"
+		65 |     effect = "Allow"
+		66 | 
+		67 |     actions = [
+		68 |       "logs:CreateLogGroup",
+		69 |       "logs:CreateLogStream",
+		70 |       "logs:PutLogEvents",
+		71 |     ]
+		72 | 
+		73 |     resources = ["*"]
+		74 |   }
+		75 | }
+
+
+Check: CKV_AWS_109: "Ensure IAM policies does not allow permissions management / resource exposure without constraints"
+	FAILED for resource: aws_iam_policy_document.codebuild-ecr-policy
+	File: /iam_codebuild.tf:19-75
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-permissions-management-resource-exposure-without-constraint
+
+		19 | data "aws_iam_policy_document" "codebuild-ecr-policy" {
+		20 |   statement {
+		21 |     sid    = "AllowS3"
+		22 |     effect = "Allow"
+		23 | 
+		24 |     actions = [
+		25 |       "s3:GetObject",
+		26 |       "s3:ListBucket",
+		27 |       "s3:PutObject",
+		28 |     ]
+		29 | 
+		30 |     resources = [
+		31 |       "${aws_s3_bucket.codepipeline-artifacts.arn}",
+		32 |       "${aws_s3_bucket.codepipeline-artifacts.arn}/*"
+		33 |     ]
+		34 |   }
+		35 | 
+		36 |   statement {
+		37 |     sid    = "AllowECRAuth"
+		38 |     effect = "Allow"
+		39 | 
+		40 |     actions = ["ecr:GetAuthorizationToken"]
+		41 | 
+		42 |     resources = ["*"]
+		43 |   }
+		44 | 
+		45 |   statement {
+		46 |     sid    = "AllowECR"
+		47 |     effect = "Allow"
+		48 | 
+		49 |     actions = [
+		50 |       "ecr:*"
+		51 |     ]
+		52 |     resources = ["*"]
+		53 |     //resources = ["${aws_ecr_repository.ecr_repo.arn}"]
+		54 |   }
+		55 | 
+		56 |   statement {
+		57 |     sid       = "AllowECSDescribeTaskDefinition"
+		58 |     effect    = "Allow"
+		59 |     actions   = ["ecs:DescribeTaskDefinition"]
+		60 |     resources = ["*"]
+		61 |   }
+		62 | 
+		63 |   statement {
+		64 |     sid    = "AllowLogging"
+		65 |     effect = "Allow"
+		66 | 
+		67 |     actions = [
+		68 |       "logs:CreateLogGroup",
+		69 |       "logs:CreateLogStream",
+		70 |       "logs:PutLogEvents",
+		71 |     ]
+		72 | 
+		73 |     resources = ["*"]
+		74 |   }
+		75 | }
+
+
+Check: CKV_AWS_111: "Ensure IAM policies does not allow write access without constraints"
+	FAILED for resource: aws_iam_policy_document.codedeploy
+	File: /iam_codedeploy.tf:25-64
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-write-access-without-constraint
+
+		25 | data "aws_iam_policy_document" "codedeploy" {
+		26 |   statement {
+		27 |     sid    = "AllowLoadBalancingAndECSModifications"
+		28 |     effect = "Allow"
+		29 | 
+		30 |     actions = [
+		31 |       "ecs:CreateTaskSet",
+		32 |       "ecs:DeleteTaskSet",
+		33 |       "ecs:DescribeServices",
+		34 |       "ecs:UpdateServicePrimaryTaskSet",
+		35 |       "elasticloadbalancing:DescribeListeners",
+		36 |       "elasticloadbalancing:DescribeRules",
+		37 |       "elasticloadbalancing:DescribeTargetGroups",
+		38 |       "elasticloadbalancing:ModifyListener",
+		39 |       "elasticloadbalancing:ModifyRule",
+		40 |     ]
+		41 | 
+		42 |     resources = ["*"]
+		43 |   }
+		44 | 
+		45 |   statement {
+		46 |     sid    = "AllowS3"
+		47 |     effect = "Allow"
+		48 | 
+		49 |     actions = ["s3:GetObject"]
+		50 | 
+		51 |     resources = ["${aws_s3_bucket.codepipeline-artifacts.arn}/*"]
+		52 |   }
+		53 | 
+		54 |   statement {
+		55 |     sid    = "AllowPassRole"
+		56 |     effect = "Allow"
+		57 | 
+		58 |     actions = ["iam:PassRole"]
+		59 | 
+		60 |     resources = [
+		61 |       "${aws_iam_role.ecs_task_execution_role.arn}"
+		62 |     ]
+		63 |   }
+		64 | }
+
+
+Check: CKV_AWS_111: "Ensure IAM policies does not allow write access without constraints"
+	FAILED for resource: aws_iam_policy_document.pipeline
+	File: /iam_codepipeline.tf:19-87
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-write-access-without-constraint
+
+		19 | data "aws_iam_policy_document" "pipeline" {
+		20 |   statement {
+		21 |     sid    = "AllowS3"
+		22 |     effect = "Allow"
+		23 | 
+		24 |     actions = [
+		25 |       "s3:GetObject",
+		26 |       "s3:ListBucket",
+		27 |       "s3:PutObject",
+		28 |     ]
+		29 | 
+		30 |     resources = [
+		31 |       "${aws_s3_bucket.codepipeline-artifacts.arn}",
+		32 |       "${aws_s3_bucket.codepipeline-artifacts.arn}/*",
+		33 |     ]
+		34 |   }
+		35 | 
+		36 |   statement {
+		37 |     sid    = "AllowCodeBuild"
+		38 |     effect = "Allow"
+		39 | 
+		40 |     actions = [
+		41 |       "codebuild:BatchGetBuilds",
+		42 |       "codebuild:StartBuild",
+		43 |     ]
+		44 | 
+		45 |     resources = ["*"]
+		46 |   }
+		47 | 
+		48 |   statement {
+		49 |     sid    = "AllowCodeDeploy"
+		50 |     effect = "Allow"
+		51 | 
+		52 |     actions = [
+		53 |       "codedeploy:CreateDeployment",
+		54 |       "codedeploy:GetApplication",
+		55 |       "codedeploy:GetApplicationRevision",
+		56 |       "codedeploy:GetDeployment",
+		57 |       "codedeploy:GetDeploymentConfig",
+		58 |       "codedeploy:RegisterApplicationRevision",
+		59 |     ]
+		60 | 
+		61 |     resources = ["*"]
+		62 |   }
+		63 | 
+		64 |   statement {
+		65 |     sid    = "AllowECS"
+		66 |     effect = "Allow"
+		67 | 
+		68 |     actions = ["ecs:*"]
+		69 | 
+		70 |     resources = ["*"]
+		71 |   }
+		72 | 
+		73 |   statement {
+		74 |     sid    = "AllowPassRole"
+		75 |     effect = "Allow"
+		76 | 
+		77 |     resources = ["*"]
+		78 | 
+		79 |     actions = ["iam:PassRole"]
+		80 | 
+		81 |     condition {
+		82 |       test     = "StringLike"
+		83 |       values   = ["ecs-tasks.amazonaws.com"]
+		84 |       variable = "iam:PassedToService"
+		85 |     }
+		86 |   }
+		87 | }
+
+
+Check: CKV_AWS_109: "Ensure IAM policies does not allow permissions management / resource exposure without constraints"
+	FAILED for resource: aws_iam_policy_document.pipeline
+	File: /iam_codepipeline.tf:19-87
+	Guide: https://docs.bridgecrew.io/docs/ensure-iam-policies-do-not-allow-permissions-management-resource-exposure-without-constraint
+
+		19 | data "aws_iam_policy_document" "pipeline" {
+		20 |   statement {
+		21 |     sid    = "AllowS3"
+		22 |     effect = "Allow"
+		23 | 
+		24 |     actions = [
+		25 |       "s3:GetObject",
+		26 |       "s3:ListBucket",
+		27 |       "s3:PutObject",
+		28 |     ]
+		29 | 
+		30 |     resources = [
+		31 |       "${aws_s3_bucket.codepipeline-artifacts.arn}",
+		32 |       "${aws_s3_bucket.codepipeline-artifacts.arn}/*",
+		33 |     ]
+		34 |   }
+		35 | 
+		36 |   statement {
+		37 |     sid    = "AllowCodeBuild"
+		38 |     effect = "Allow"
+		39 | 
+		40 |     actions = [
+		41 |       "codebuild:BatchGetBuilds",
+		42 |       "codebuild:StartBuild",
+		43 |     ]
+		44 | 
+		45 |     resources = ["*"]
+		46 |   }
+		47 | 
+		48 |   statement {
+		49 |     sid    = "AllowCodeDeploy"
+		50 |     effect = "Allow"
+		51 | 
+		52 |     actions = [
+		53 |       "codedeploy:CreateDeployment",
+		54 |       "codedeploy:GetApplication",
+		55 |       "codedeploy:GetApplicationRevision",
+		56 |       "codedeploy:GetDeployment",
+		57 |       "codedeploy:GetDeploymentConfig",
+		58 |       "codedeploy:RegisterApplicationRevision",
+		59 |     ]
+		60 | 
+		61 |     resources = ["*"]
+		62 |   }
+		63 | 
+		64 |   statement {
+		65 |     sid    = "AllowECS"
+		66 |     effect = "Allow"
+		67 | 
+		68 |     actions = ["ecs:*"]
+		69 | 
+		70 |     resources = ["*"]
+		71 |   }
+		72 | 
+		73 |   statement {
+		74 |     sid    = "AllowPassRole"
+		75 |     effect = "Allow"
+		76 | 
+		77 |     resources = ["*"]
+		78 | 
+		79 |     actions = ["iam:PassRole"]
+		80 | 
+		81 |     condition {
+		82 |       test     = "StringLike"
+		83 |       values   = ["ecs-tasks.amazonaws.com"]
+		84 |       variable = "iam:PassedToService"
+		85 |     }
+		86 |   }
+		87 | }
+
+
+Check: CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
+	FAILED for resource: aws_s3_bucket.codepipeline-artifacts
+	File: /s3.tf:1-8
+	Guide: https://docs.bridgecrew.io/docs/s3_13-enable-logging
+
+		1 | resource "aws_s3_bucket" "codepipeline-artifacts" {
+		2 |     bucket = "pipeline-artifacts-rf"
+		3 |     acl = "private"
+		4 |     
+		5 |     tags = {
+		6 |       "Name" = "pipeline-artifacts-bucket"
+		7 |     }
+		8 | }
+
+Check: CKV_AWS_144: "Ensure that S3 bucket has cross-region replication enabled"
+	FAILED for resource: aws_s3_bucket.codepipeline-artifacts
+	File: /s3.tf:1-8
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-s3-bucket-has-cross-region-replication-enabled
+
+		1 | resource "aws_s3_bucket" "codepipeline-artifacts" {
+		2 |     bucket = "pipeline-artifacts-rf"
+		3 |     acl = "private"
+		4 |     
+		5 |     tags = {
+		6 |       "Name" = "pipeline-artifacts-bucket"
+		7 |     }
+		8 | }
+
+Check: CKV_AWS_145: "Ensure that S3 buckets are encrypted with KMS by default"
+	FAILED for resource: aws_s3_bucket.codepipeline-artifacts
+	File: /s3.tf:1-8
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-s3-buckets-are-encrypted-with-kms-by-default
+
+		1 | resource "aws_s3_bucket" "codepipeline-artifacts" {
+		2 |     bucket = "pipeline-artifacts-rf"
+		3 |     acl = "private"
+		4 |     
+		5 |     tags = {
+		6 |       "Name" = "pipeline-artifacts-bucket"
+		7 |     }
+		8 | }
+
+Check: CKV_AWS_21: "Ensure all data stored in the S3 bucket have versioning enabled"
+	FAILED for resource: aws_s3_bucket.codepipeline-artifacts
+	File: /s3.tf:1-8
+	Guide: https://docs.bridgecrew.io/docs/s3_16-enable-versioning
+
+		1 | resource "aws_s3_bucket" "codepipeline-artifacts" {
+		2 |     bucket = "pipeline-artifacts-rf"
+		3 |     acl = "private"
+		4 |     
+		5 |     tags = {
+		6 |       "Name" = "pipeline-artifacts-bucket"
+		7 |     }
+		8 | }
+
+Check: CKV_AWS_19: "Ensure all data stored in the S3 bucket is securely encrypted at rest"
+	FAILED for resource: aws_s3_bucket.codepipeline-artifacts
+	File: /s3.tf:1-8
+	Guide: https://docs.bridgecrew.io/docs/s3_14-data-encrypted-at-rest
+
+		1 | resource "aws_s3_bucket" "codepipeline-artifacts" {
+		2 |     bucket = "pipeline-artifacts-rf"
+		3 |     acl = "private"
+		4 |     
+		5 |     tags = {
+		6 |       "Name" = "pipeline-artifacts-bucket"
+		7 |     }
+		8 | }
+
+Check: CKV_AWS_23: "Ensure every security groups rule has a description"
+	FAILED for resource: aws_security_group.alb-sg
+	File: /security-groups.tf:1-22
+	Guide: https://docs.bridgecrew.io/docs/networking_31
+
+		1  | resource "aws_security_group" "alb-sg" {
+		2  |   name   = "alb-allow-http-sg"
+		3  |   vpc_id = "${aws_vpc.test-vpc.id}"
+		4  | 
+		5  |   ingress {
+		6  |     from_port   = 80
+		7  |     protocol    = "tcp"
+		8  |     to_port     = 80
+		9  |     cidr_blocks = ["0.0.0.0/0"]
+		10 |   }
+		11 | 
+		12 |   egress {
+		13 |     from_port   = 0
+		14 |     protocol    = "-1"
+		15 |     to_port     = 0
+		16 |     cidr_blocks = ["0.0.0.0/0"]
+		17 |   }
+		18 | 
+		19 |   tags ={
+		20 |     Name = "allow-http-sg"
+		21 |   }
+		22 | }
+
+
+Check: CKV_AWS_23: "Ensure every security groups rule has a description"
+	FAILED for resource: aws_security_group.ecs_sg
+	File: /security-groups.tf:24-42
+	Guide: https://docs.bridgecrew.io/docs/networking_31
+
+		24 | resource "aws_security_group" "ecs_sg" {
+		25 |   name        = "ecs-security-group"
+		26 |   description = "allow inbound access from the ALB only"
+		27 |   vpc_id      = aws_vpc.test-vpc.id
+		28 | 
+		29 |   ingress {
+		30 |     protocol        = "tcp"
+		31 |     from_port       = var.app_port
+		32 |     to_port         = var.app_port
+		33 |     security_groups = [aws_security_group.alb-sg.id]
+		34 |   }
+		35 | 
+		36 |   egress {
+		37 |     protocol    = "-1"
+		38 |     from_port   = 0
+		39 |     to_port     = 0
+		40 |     cidr_blocks = ["0.0.0.0/0"]
+		41 |   }
+		42 | }
+
+
+Check: CKV_AWS_130: "Ensure VPC subnets do not assign public IP by default"
+	FAILED for resource: aws_subnet.public
+	File: /vpc.tf:67-77
+	Guide: https://docs.bridgecrew.io/docs/ensure-vpc-subnets-do-not-assign-public-ip-by-default
+
+		67 | resource "aws_subnet" "public" {
+		68 |   count                   = var.az_count
+		69 |   cidr_block              = cidrsubnet(aws_vpc.test-vpc.cidr_block, 8, var.az_count + count.index)
+		70 |   availability_zone       = data.aws_availability_zones.available.names[count.index]
+		71 |   vpc_id                  = aws_vpc.test-vpc.id
+		72 |   map_public_ip_on_launch = true
+		73 | 
+		74 |   tags = {
+		75 |     Name = "aws_subnet.public-${count.index}"
+		76 |   }
+		77 | }
+
+
+Check: CKV2_AWS_11: "Ensure VPC flow logging is enabled in all VPCs"
+	FAILED for resource: aws_vpc.test-vpc
+	File: /vpc.tf:45-47
+	Guide: https://docs.bridgecrew.io/docs/logging_9-enable-vpc-flow-logging
+
+		45 | resource "aws_vpc" "test-vpc" {
+		46 |   cidr_block = "172.16.0.0/16"
+		47 | }
+
+
+Check: CKV2_AWS_20: "Ensure that ALB redirects HTTP requests into HTTPS ones"
+	FAILED for resource: aws_alb.app-load-balancer
+	File: /alb.tf:1-11
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-alb-redirects-http-requests-into-https-ones
+
+		1  | resource "aws_alb" "app-load-balancer" {
+		2  |   name               = "alb"
+		3  |   internal           = false
+		4  |   load_balancer_type = "application"
+		5  |   security_groups    = ["${aws_security_group.alb-sg.id}"]
+		6  |   subnets            = aws_subnet.public.*.id
+		7  | 
+		8  |   tags ={
+		9  |     Name = "alb"
+		10 |   }
+		11 | }
+
+
+Check: CKV2_AWS_28: "Ensure public facing ALB are protected by WAF"
+	FAILED for resource: aws_alb.app-load-balancer
+	File: /alb.tf:1-11
+	Guide: https://docs.bridgecrew.io/docs/ensure-public-facing-alb-are-protected-by-waf
+
+		1  | resource "aws_alb" "app-load-balancer" {
+		2  |   name               = "alb"
+		3  |   internal           = false
+		4  |   load_balancer_type = "application"
+		5  |   security_groups    = ["${aws_security_group.alb-sg.id}"]
+		6  |   subnets            = aws_subnet.public.*.id
+		7  | 
+		8  |   tags ={
+		9  |     Name = "alb"
+		10 |   }
+		11 | }
+
+
+Check: CKV2_AWS_6: "Ensure that S3 bucket has a Public Access block"
+	FAILED for resource: aws_s3_bucket.codepipeline-artifacts
+	File: /s3.tf:1-8
+	Guide: https://docs.bridgecrew.io/docs/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached
+
+		1 | resource "aws_s3_bucket" "codepipeline-artifacts" {
+		2 |     bucket = "pipeline-artifacts-rf"
+		3 |     acl = "private"
+		4 |     
+		5 |     tags = {
+		6 |       "Name" = "pipeline-artifacts-bucket"
+		7 |     }
+		8 | }
+
+Check: CKV2_AWS_12: "Ensure the default security group of every VPC restricts all traffic"
+	FAILED for resource: aws_vpc.test-vpc
+	File: /vpc.tf:45-47
+	Guide: https://docs.bridgecrew.io/docs/networking_4
+
+		45 | resource "aws_vpc" "test-vpc" {
+		46 |   cidr_block = "172.16.0.0/16"
+		47 | }
+
+
+dockerfile scan results:
+
+Passed checks: 3, Failed checks: 2, Skipped checks: 0
+
+Check: CKV_DOCKER_5: "Ensure update instructions are not use alone in the Dockerfile"
+	PASSED for resource: /Dockerfile.
+	File: /Dockerfile:1-19
+	Guide: https://docs.bridgecrew.io/docs/ensure-update-instructions-are-not-used-alone-in-the-dockerfile
+
+Check: CKV_DOCKER_1: "Ensure port 22 is not exposed"
+	PASSED for resource: /Dockerfile.
+	File: /Dockerfile:1-19
+	Guide: https://docs.bridgecrew.io/docs/ensure-port-22-is-not-exposed
+
+Check: CKV_DOCKER_7: "Ensure the base image uses a non latest version tag"
+	PASSED for resource: /Dockerfile.
+	File: /Dockerfile:1-19
+	Guide: https://docs.bridgecrew.io/docs/ensure-the-base-image-uses-a-non-latest-version-tag
+
+Check: CKV_DOCKER_2: "Ensure that HEALTHCHECK instructions have been added to container images"
+	FAILED for resource: /Dockerfile.
+	File: /Dockerfile:1-19
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-healthcheck-instructions-have-been-added-to-container-images
+
+		1  | #base image
+		2  | FROM node:13.12.0-alpine
+		3  | 
+		4  | #set working dir
+		5  | WORKDIR /app
+		6  | 
+		7  | #add node modules/.bin to PATH
+		8  | ENV PATH  /app/node_modules/.bin:$PATH
+		9  | 
+		10 | #install dependencies
+		11 | COPY package.json ./
+		12 | COPY package-lock.json ./
+		13 | RUN npm install --silent
+		14 | RUN npm install react-scripts@3.4.1 -g --silent
+		15 | COPY . ./
+		16 | 
+		17 | EXPOSE 3000
+		18 | 
+		19 | CMD ["npm", "start"]
+
+Check: CKV_DOCKER_3: "Ensure that a user for the container has been created"
+	FAILED for resource: /Dockerfile.
+	File: /Dockerfile:1-19
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-a-user-for-the-container-has-been-created
+
+		1  | #base image
+		2  | FROM node:13.12.0-alpine
+		3  | 
+		4  | #set working dir
+		5  | WORKDIR /app
+		6  | 
+		7  | #add node modules/.bin to PATH
+		8  | ENV PATH  /app/node_modules/.bin:$PATH
+		9  | 
+		10 | #install dependencies
+		11 | COPY package.json ./
+		12 | COPY package-lock.json ./
+		13 | RUN npm install --silent
+		14 | RUN npm install react-scripts@3.4.1 -g --silent
+		15 | COPY . ./
+		16 | 
+		17 | EXPOSE 3000
+		18 | 
+		19 | CMD ["npm", "start"]
+
+secrets scan results:
+
+Passed checks: 0, Failed checks: 14, Skipped checks: 0
+
+Check: CKV_SECRET_13: "Private Key"
+	FAILED for resource: 1348b145fa1a555461c1b790a2f66614781091e9
+	File: /aws/dist/awscli/botocore/data/acm/2015-12-08/service-2.json:976-977
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_13
+
+		976 |       "pattern":"-{5}BEGIN PRIVATE KEY-{5}\\u000D?\\u000A([A-Za-z0-9/+]{64}\\u000D?\\u000A)*[A-Za-z0-9/+]{1,64}={0,2}\\u000D?\\u000A-{5}END PRIVATE KEY-{5}(\\u000D?\\u000A)?",
+
+
+Check: CKV_SECRET_6: "Base64 High Entropy String"
+	FAILED for resource: 68451c85f22999df2df9ae4c727742d4c4750cc5
+	File: /aws/dist/awscli/botocore/data/iam/2010-05-08/examples-1.json:110-111
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_6
+
+		110 |           "OldPassword": "3s0K_;xh4~8XXI"
+
+
+Check: CKV_SECRET_6: "Base64 High Entropy String"
+	FAILED for resource: dca841883608b9ceb820871aa93588c5a0d68241
+	File: /aws/dist/awscli/botocore/data/iam/2010-05-08/examples-1.json:132-133
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_6
+
+		132 |             "SecretAccessKey": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY",
+
+
+Check: CKV_SECRET_6: "Base64 High Entropy String"
+	FAILED for resource: 5afc8214a7d8ebf24d376d05d2bfcc62ef1144d9
+	File: /aws/dist/awscli/botocore/data/iam/2010-05-08/examples-1.json:875-876
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_6
+
+		875 |               "PasswordLastUsed": "2016-09-08T21:47:36Z",
+
+
+Check: CKV_SECRET_13: "Private Key"
+	FAILED for resource: daefe0b4345a654580dcad25c7c11ff4c944a8c0
+	File: /aws/dist/awscli/botocore/data/iam/2010-05-08/examples-1.json:1140-1141
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_13
+
+		1140 |           "PrivateKey": "-----BEGIN DSA PRIVATE KEY-----<a very long private key string>-----END DSA PRIVATE KEY-----",
+
+
+Check: CKV_SECRET_6: "Base64 High Entropy String"
+	FAILED for resource: 91dfd9ddb4198affc5c194cd8ce6d338fde470e2
+	File: /aws/dist/awscli/botocore/data/rds/2014-10-31/examples-1.json:210-211
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_6
+
+		210 |           "MasterUserPassword": "mypassword",
+
+
+Check: CKV_SECRET_6: "Base64 High Entropy String"
+	FAILED for resource: c16c80937690561ea93178b0984265adbb382817
+	File: /aws/dist/awscli/botocore/data/rds/2014-10-31/examples-1.json:210-211
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_6
+
+		210 |           "MasterUserPassword": "mypassword",
+
+
+Check: CKV_SECRET_6: "Base64 High Entropy String"
+	FAILED for resource: daa1f31819ed4928fd00e986e6bda6dab6b177dc
+	File: /aws/dist/awscli/botocore/data/rds/2014-10-31/examples-1.json:280-281
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_6
+
+		280 |           "MasterUserPassword": "MyPassword",
+
+
+Check: CKV_SECRET_6: "Base64 High Entropy String"
+	FAILED for resource: 95b0665e64fa24c375f1db3797739dc833a01be1
+	File: /aws/dist/awscli/botocore/data/rds/2014-10-31/examples-1.json:1308-1309
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_6
+
+		1308 |           "MasterUserPassword": "mynewpassword",
+
+
+Check: CKV_SECRET_6: "Base64 High Entropy String"
+	FAILED for resource: fd10572d6738e574c6893469458af262ff52612e
+	File: /aws/dist/awscli/botocore/data/secretsmanager/2017-10-17/examples-1.json:146-147
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_6
+
+		146 |           "RandomPassword": "N+Z43a,>vx7j O8^*<8i3"
+
+
+Check: CKV_SECRET_6: "Base64 High Entropy String"
+	FAILED for resource: 5fa92c219a85790eac7fff7a5cba1b8af6edf025
+	File: /aws/dist/awscli/botocore/data/storagegateway/2013-06-30/examples-1.json:536-537
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_6
+
+		536 |               "SecretToAuthenticateInitiator": "111111111111",
+
+
+Check: CKV_SECRET_6: "Base64 High Entropy String"
+	FAILED for resource: 0be5706af74d06acbf1afcffed8bfb3933585be1
+	File: /aws/dist/awscli/botocore/data/storagegateway/2013-06-30/examples-1.json:537-538
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_6
+
+		537 |               "SecretToAuthenticateTarget": "222222222222",
+
+
+Check: CKV_SECRET_6: "Base64 High Entropy String"
+	FAILED for resource: ad8fceecfd4d846d4b75a682ea6d5a4ddef838f8
+	File: /aws/dist/awscli/botocore/data/storagegateway/2013-06-30/examples-1.json:1177-1178
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_6
+
+		1177 |           "LocalConsolePassword": "PassWordMustBeAtLeast6Chars."
+
+
+Check: CKV_SECRET_6: "Base64 High Entropy String"
+	FAILED for resource: dca841883608b9ceb820871aa93588c5a0d68241
+	File: /aws/dist/awscli/botocore/data/sts/2011-06-15/examples-1.json:21-22
+	Guide: https://docs.bridgecrew.io/docs/git_secrets_6
+
+		21 |             "SecretAccessKey": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY",
+
+
