@@ -18,5 +18,4 @@ provider "docker" {
         username = data.aws_ecr_authorization_token.dockertoken.user_name
         password = data.aws_ecr_authorization_token.dockertoken.password
     }
-  
 }
