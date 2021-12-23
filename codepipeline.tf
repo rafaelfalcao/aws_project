@@ -1,5 +1,5 @@
 
-resource "aws_codepipeline" "this" {
+resource "aws_codepipeline" "aws-codepipeline" {
   name     = "blue-green-pipeline"
   role_arn = "${aws_iam_role.pipeline.arn}"
 
@@ -41,7 +41,7 @@ resource "aws_codepipeline" "this" {
       output_artifacts = ["build"]
 
       configuration = {
-        ProjectName = "${aws_codebuild_project.this.name}"
+        ProjectName = "${aws_codebuild_project.codebuild-project.name}"
       }
     }
   }
@@ -58,8 +58,8 @@ resource "aws_codepipeline" "this" {
       input_artifacts = ["build"]
 
       configuration = {
-        ApplicationName                = "${aws_codedeploy_app.this.name}"
-        DeploymentGroupName            = "${aws_codedeploy_deployment_group.this.deployment_group_name}"
+        ApplicationName                = "${aws_codedeploy_app.codedeploy-app.name}"
+        DeploymentGroupName            = "${aws_codedeploy_deployment_group.codedeploy-deployment-group.deployment_group_name}"
         TaskDefinitionTemplateArtifact = "build"
         AppSpecTemplateArtifact        = "build"
       }

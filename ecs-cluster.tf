@@ -21,7 +21,13 @@ resource "aws_ecs_task_definition" "my_task_definition" {
     "memory": 1024,
     "cpu": 512,
     "essential": true,
-    "entryPoint": ["npm","start"],
+    "healthCheck": {
+      "command": ["CMD-SHELL", "curl -f http://localhost:${var.app_port}/ || exit 89"],
+      "interval": 10,
+      "timeout": 10,
+      "retries": 3,
+      "startPeriod": 60
+    },
     "portMappings": [
       {
         "containerPort": ${var.app_port},
@@ -49,7 +55,7 @@ resource "aws_ecs_service" "my_ecs_service" {
 
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.this.0.arn
+    target_group_arn = aws_alb_target_group.alb-tg.0.arn
     container_name   = var.container_name 
     container_port   = var.app_port
   }
@@ -59,9 +65,9 @@ resource "aws_ecs_service" "my_ecs_service" {
   }
 
   depends_on = [
-    aws_alb_listener.this,
+    aws_alb_listener.alb-http-listener,
 //    aws_alb_listener.https-listener,
-    aws_alb_target_group.this
+    aws_alb_target_group.alb-tg
   ]
 }
 

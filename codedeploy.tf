@@ -1,5 +1,5 @@
-resource "aws_codedeploy_deployment_group" "this" {
-  app_name               = "${aws_codedeploy_app.this.name}"
+resource "aws_codedeploy_deployment_group" "codedeploy-deployment-group" {
+  app_name               = "${aws_codedeploy_app.codedeploy-app.name}"
   deployment_group_name  = "codedeploy-group"
   deployment_config_name = "CodeDeployDefault.ECSAllAtOnce"
   service_role_arn       = "${aws_iam_role.codedeploy.arn}"
@@ -27,22 +27,22 @@ resource "aws_codedeploy_deployment_group" "this" {
   load_balancer_info {
     target_group_pair_info {
       prod_traffic_route {
-        listener_arns = ["${aws_alb_listener.this.arn}"]
+        listener_arns = ["${aws_alb_listener.alb-http-listener.arn}"]
       }
 
       target_group {
-        name = "${aws_alb_target_group.this.*.name[0]}"
+        name = "${aws_alb_target_group.alb-tg.*.name[0]}"
       }
 
       target_group {
-        name = "${aws_alb_target_group.this.*.name[1]}"
+        name = "${aws_alb_target_group.alb-tg.*.name[1]}"
       }
     }
   }
 }
 
 
-resource "aws_codedeploy_app" "this" {
+resource "aws_codedeploy_app" "codedeploy-app" {
   compute_platform = "ECS"
-  name             = "example-deploy"
+  name             = "codedeploy-app"
 }

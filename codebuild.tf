@@ -1,4 +1,4 @@
-resource "aws_codebuild_project" "this" {
+resource "aws_codebuild_project" "codebuild-project" {
   name         = "codebuild"
   description  = "Codebuild for the ECS Green/Blue"
   service_role = "${aws_iam_role.codebuild.arn}"

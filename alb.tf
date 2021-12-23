@@ -1,32 +1,9 @@
-resource "aws_security_group" "this" {
-  name   = "allow-http"
-  vpc_id = "${aws_vpc.test-vpc.id}"
-
-  ingress {
-    from_port   = 80
-    protocol    = "tcp"
-    to_port     = 80
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    protocol    = "-1"
-    to_port     = 0
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags ={
-    Name = "allow-http-sg"
-  }
-}
-
-resource "aws_alb" "this" {
+resource "aws_alb" "app-load-balancer" {
   name               = "alb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    =  ["${aws_security_group.this.id}"]
-  subnets            =aws_subnet.public.*.id
+  security_groups    = ["${aws_security_group.alb-sg.id}"]
+  subnets            = aws_subnet.public.*.id
 
   tags ={
     Name = "alb"
@@ -40,7 +17,7 @@ locals {
   ]
 }
 
-resource "aws_alb_target_group" "this" {
+resource "aws_alb_target_group" "alb-tg" {
   count = "${length(local.target_groups)}"
 
   name = "example-tg-${element(local.target_groups, count.index)}"
@@ -56,23 +33,23 @@ resource "aws_alb_target_group" "this" {
   }
 }
 
-resource "aws_alb_listener" "this" {
-  load_balancer_arn = "${aws_alb.this.arn}"
+resource "aws_alb_listener" "alb-http-listener" {
+  load_balancer_arn = "${aws_alb.app-load-balancer.arn}"
   port              = 80
   protocol          = "HTTP"
 
   default_action {
     type             = "forward"
-    target_group_arn = "${aws_alb_target_group.this.*.arn[0]}"
+    target_group_arn = "${aws_alb_target_group.alb-tg.*.arn[0]}"
   }
 }
 
-resource "aws_alb_listener_rule" "this" {
-  listener_arn = "${aws_alb_listener.this.arn}"
+resource "aws_alb_listener_rule" "alb-listener-rule" {
+  listener_arn = "${aws_alb_listener.alb-http-listener.arn}"
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_alb_target_group.this.*.arn[0]}"
+    target_group_arn = "${aws_alb_target_group.alb-tg.*.arn[0]}"
   }
   
    condition {
